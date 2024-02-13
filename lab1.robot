@@ -6,3 +6,58 @@
 #beskriver vad som testas.
 #• Åtminstone ett testfall bör skrivas i DDT-format.
 #• Minst två negativa testfal
+
+
+
+*** Settings ***
+
+Documentation    ovning-4
+Library    SeleniumLibrary
+Library    Collections
+Library     XML
+Suite Setup     setup
+
+
+*** Variables ***
+#${}
+${infotivCarRental}   //h1[@id='title']
+${createNewUser}        //h1[@id='questionText']
+${createUser}       //button[@id='createUser']
+${firstName}        //input[@id='name']
+${lastName}        //input[@id='last']
+#@{}=    Create List
+#@{}=    Create List
+#@{}=    Create List
+${url}      https://rental13.infotiv.net/
+
+#follwing are customer details
+${inputName}        Deba
+${inputLastName}        Arif
+${createUser}       //button[@id='createUser']
+
+
+*** Keywords ***
+setup
+    Set Selenium Speed    1    #used to control the speed
+    Open Browser    browser=Chrome
+    Go To   ${url}
+
+
+*** Test Cases ***
+check if website opens
+    [Documentation]     check if website is open correctly by waiting to see infotiv car rental
+    [Tags]      verify website is correct
+    
+    Wait Until Element Is Visible    ${infotivCarRental}
+
+    IF    "$PREV TEST STATUS =='PASS'"
+        Log    website status: website opened successfuly
+    ELSE
+        Log    List eqaulity status: website could not be opened
+    END
+
+
+
+
+
+
