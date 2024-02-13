@@ -11,6 +11,9 @@
 
 *** Settings ***
 
+#user:deebarf@gmail.com
+#password: infotiv2024
+
 Documentation    ovning-4
 Library    SeleniumLibrary
 Library    Collections
@@ -19,21 +22,34 @@ Suite Setup     setup
 
 
 *** Variables ***
-#${}
+
+${url}      https://rental13.infotiv.net/
 ${infotivCarRental}   //h1[@id='title']
 ${createNewUser}        //h1[@id='questionText']
 ${createUser}       //button[@id='createUser']
 ${firstName}        //input[@id='name']
 ${lastName}        //input[@id='last']
+${phoneNumber}        //input[@id='phone']
+${E-mail}        //input[@id='emailCreate']
+${confirm-E-mail}        //input[@id='confirmEmail']
+${password}        //input[@id='passwordCreate']
+${confirmPassword}        //input[@id='confirmPassword']
+${createButton}        //button[@id='create']
+${whatWouldYouLikeToDrive}     //h1[@id='questionText']
+#${}        //input[@id='phone']
 #@{}=    Create List
 #@{}=    Create List
 #@{}=    Create List
-${url}      https://rental13.infotiv.net/
+
+
 
 #follwing are customer details
 ${inputName}        Deba
 ${inputLastName}        Arif
 ${createUser}       //button[@id='createUser']
+${inputPhoneNumber}        004612335678
+${input-E-mail}        deebarf20243@gmail.com
+${inputPassword}        infotiv2024
 
 
 *** Keywords ***
@@ -55,6 +71,36 @@ check if website opens
     ELSE
         Log    List eqaulity status: website could not be opened
     END
+
+
+click on creat customer profile
+    [Documentation]     click on create customer and make sure its on correct page
+    [Tags]      creating customer
+
+    Click Button    ${createUser}
+
+    Wait Until Element Is Visible    ${createNewUser}
+
+
+
+fill customer details on create customer page
+    [Documentation]     filling customer details
+    [Tags]
+
+    Input Text      ${firstName}      ${inputName}
+    Input Text      ${lastName}       ${inputLastName}
+    Input Text      ${phoneNumber}       ${inputPhoneNumber}
+    Input Text      ${E-mail}       ${input-E-mail}
+    Input Text      ${confirm-E-mail}       ${input-E-mail}
+    Input Password     ${password}      ${inputPassword}
+    Input Password     ${confirmPassword}      ${inputPassword}
+    Click Button    ${createButton}
+    #Wait Until Page Contains    ${whatWouldYouLikeToDrive} #this does not match when is done automatically and manually
+
+
+
+
+
 
 
 
