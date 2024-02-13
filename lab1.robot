@@ -23,8 +23,27 @@ Suite Setup     setup
 
 *** Variables ***
 
+#${}        //input[@id='phone']
+#@{}=    Create List
+#@{}=    Create List
+#@{}=    Create List
+
 ${url}      https://rental13.infotiv.net/
 ${infotivCarRental}   //h1[@id='title']
+
+
+#Login locators
+${login-E-mail}        //input[@id='email']
+${login-password}        //input[@id='password']
+${youAreSignedInAsDeba}       //label[@id='welcomePhrase']
+${loginButton}     //button[@id='login']
+
+#login variables
+${input-E-mail}        deebarf@gmail.com
+${inputPassword}        infotiv2024
+
+
+#following are locators for creating new custome for the first time
 ${createNewUser}        //h1[@id='questionText']
 ${createUser}       //button[@id='createUser']
 ${firstName}        //input[@id='name']
@@ -36,20 +55,15 @@ ${password}        //input[@id='passwordCreate']
 ${confirmPassword}        //input[@id='confirmPassword']
 ${createButton}        //button[@id='create']
 ${whatWouldYouLikeToDrive}     //h1[@id='questionText']
-#${}        //input[@id='phone']
-#@{}=    Create List
-#@{}=    Create List
-#@{}=    Create List
 
 
-
-#follwing are customer details
+#follwing are customer details when we want to create new customer
 ${inputName}        Deba
 ${inputLastName}        Arif
 ${createUser}       //button[@id='createUser']
 ${inputPhoneNumber}        004612335678
-${input-E-mail}        deebarf20243@gmail.com
-${inputPassword}        infotiv2024
+${new-E-mail}        deebarf@gmail.com
+${newPassword}        infotiv2024
 
 
 *** Keywords ***
@@ -83,21 +97,28 @@ click on creat customer profile
 
 
 
-fill customer details on create customer page
-    [Documentation]     filling customer details
-    [Tags]
+#fill customer details on create customer page
+    #[Documentation]     filling customer details
+    #[Tags]
 
-    Input Text      ${firstName}      ${inputName}
-    Input Text      ${lastName}       ${inputLastName}
-    Input Text      ${phoneNumber}       ${inputPhoneNumber}
-    Input Text      ${E-mail}       ${input-E-mail}
-    Input Text      ${confirm-E-mail}       ${input-E-mail}
-    Input Password     ${password}      ${inputPassword}
-    Input Password     ${confirmPassword}      ${inputPassword}
-    Click Button    ${createButton}
+    #Input Text      ${firstName}      ${inputName}
+    #Input Text      ${lastName}       ${inputLastName}
+    #Input Text      ${phoneNumber}       ${inputPhoneNumber}
+    #Input Text      ${E-mail}       ${new-E-mail}
+    #Input Text      ${confirm-E-mail}       ${new-E-mail}
+    #Input Password     ${password}      ${newPassword}
+    #Input Password     ${confirmPassword}      ${newPassword}
+    #Click Button    ${createButton}
     #Wait Until Page Contains    ${whatWouldYouLikeToDrive} #this does not match when is done automatically and manually
 
 
+login the customer
+    [Documentation]     logging in
+    [Tags]
+
+    Input Text      ${login-E-mail}       ${input-E-mail}
+    Input Password     ${login-password}      ${inputPassword}
+    Click Button    ${loginButton}
 
 
 
