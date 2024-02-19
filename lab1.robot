@@ -25,9 +25,15 @@ Suite Setup     setup
 #@{}=    Create List
 #@{}=    Create List
 
-#general locators
+#open website locators
 ${url}      https://rental13.infotiv.net/
 ${infotivCarRental}   //h1[@id='title']
+${dateQuesion}      //h1[@id='questionText']
+
+
+# open webiste variables
+${infotivLogo}
+${visibleDateQuesion}
 
 
 #Login locators
@@ -87,16 +93,35 @@ setup
 
 
 *** Test Cases ***
-check if website opens
+website opens successfuly user is able to see infotivCarRental on the website
+
     [Documentation]     check if website is open correctly by waiting to see infotiv car rental
-    [Tags]       VG_test 
+    [Tags]        VG_test
     
     Wait Until Element Is Visible    ${infotivCarRental}
+    ${infotivLogo}=       Run Keyword And Return Status      Wait Until Element Is Visible    ${infotivCarRental}
+    Log To Console    ${infotivLogo}
 
-    IF    "$PREV TEST STATUS =='PASS'"
-        Log    website status: website opened successfuly
+    IF    ${infotivLogo} == True
+        Log    website status: website opened successfuly infotivLogo is visible
     ELSE
-        Log    List eqaulity status: website could not be opened
+        Log    List eqaulity status: website could not be opened and infotivLogo is not visible
+    END
+
+
+website opens successfuly user is able to see When do you want to make your trip? on the website
+
+    [Documentation]     check if website is open correctly by waiting to see trip date quesion
+    [Tags]        VG_test
+
+    Wait Until Element Is Visible    ${dateQuesion}
+    ${visibleDateQuesion}=       Run Keyword And Return Status      Wait Until Element Is Visible    ${dateQuesion}
+    Log To Console    ${visibleDateQuesion}
+
+    IF    ${visibleDateQuesion} == True
+        Log    website status: website opened successfuly quesion to enter date trip is seen
+    ELSE
+        Log    List eqaulity status: website could not be opened  quesion to enter date trip is not seen
     END
 
 
