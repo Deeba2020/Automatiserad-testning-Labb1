@@ -1,0 +1,1 @@
+website opens successfuly user is able to see infotivCarRental on the website
