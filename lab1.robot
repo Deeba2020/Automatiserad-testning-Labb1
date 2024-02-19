@@ -45,6 +45,7 @@ ${login-E-mail}        //input[@id='email']
 ${login-password}        //input[@id='password']
 ${youAreSignedInAsDeba}       //label[@id='welcomePhrase']
 ${loginButton}     //button[@id='login']
+${welcomePhrase}      //label[@id='welcomePhrase']
 
 #login variables
 ${input-E-mail}        deebarf@gmail.com
@@ -197,7 +198,8 @@ user enters correct password and email using existing credentials
 user clicks login button
     Click Button    ${loginButton}
 
-#user is able to see a welcome message with the name of the user
+user is able to see a welcome message with the name of the user
+    Wait Until Page Contains        ${welcomePhrase}
 
 
 
