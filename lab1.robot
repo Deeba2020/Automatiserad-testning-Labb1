@@ -31,9 +31,13 @@ ${infotivCarRental}   //h1[@id='title']
 ${dateQuesion}      //h1[@id='questionText']
 
 
+
+
 # open webiste variables
 ${infotivLogo}
 ${visibleDateQuesion}
+${visibleEmailField}
+${visiblePasswdField}
 
 
 #Login locators
@@ -102,7 +106,7 @@ website opens successfuly user is able to see infotivCarRental on the website
     ${infotivLogo}=       Run Keyword And Return Status      Wait Until Element Is Visible    ${infotivCarRental}
     Log To Console    ${infotivLogo}
 
-    IF    ${infotivLogo} == True
+    IF    '$infotivLogo == True'
         Log    website status: website opened successfuly infotivLogo is visible
     ELSE
         Log    List eqaulity status: website could not be opened and infotivLogo is not visible
@@ -118,10 +122,42 @@ website opens successfuly user is able to see When do you want to make your trip
     ${visibleDateQuesion}=       Run Keyword And Return Status      Wait Until Element Is Visible    ${dateQuesion}
     Log To Console    ${visibleDateQuesion}
 
-    IF    ${visibleDateQuesion} == True
+    IF    '$visibleDateQuesion == True'
         Log    website status: website opened successfuly quesion to enter date trip is seen
     ELSE
         Log    List eqaulity status: website could not be opened  quesion to enter date trip is not seen
+    END
+
+
+website opens successfuly to the right is the user information field to enter email
+
+    [Documentation]     check if website is open correctly by waiting to see field to enter email
+    [Tags]        VG_test
+
+    Wait Until Element Is Visible    ${login-E-mail}
+    ${visibleEmailField}=       Run Keyword And Return Status      Wait Until Element Is Visible    ${login-E-mail}
+    Log To Console    ${visibleEmailField}
+
+    IF    '$visibleEmailField == True'
+        Log    website status: website opened successfuly feild to login email is visible
+    ELSE
+        Log    List eqaulity status: website could not be opened feild to login email is not visible
+    END
+
+
+website opens successfuly to the right is the user information field to enter password
+
+    [Documentation]     check if website is open correctly by waiting to see field to enter password
+    [Tags]        VG_test
+
+    Wait Until Element Is Visible    ${login-password}
+    ${visiblePasswdField}=       Run Keyword And Return Status      Wait Until Element Is Visible     ${login-password}
+    Log To Console    ${visiblePasswdField}
+
+    IF    '$visiblePasswdField == True'
+        Log    website status: website opened successfuly feild to enter password is visible
+    ELSE
+        Log    List eqaulity status: website could not be opened feild to enter password is not visible
     END
 
 
