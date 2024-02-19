@@ -11,10 +11,7 @@
 
 *** Settings ***
 
-#user:deebarf@gmail.com
-#password: infotiv2024
-
-Documentation    ovning-4
+Documentation    lab-1
 Library    SeleniumLibrary
 Library    Collections
 Library     XML
@@ -28,6 +25,7 @@ Suite Setup     setup
 #@{}=    Create List
 #@{}=    Create List
 
+#general locators
 ${url}      https://rental13.infotiv.net/
 ${infotivCarRental}   //h1[@id='title']
 
@@ -65,6 +63,21 @@ ${inputPhoneNumber}        004612335678
 ${new-E-mail}        deebarf@gmail.com
 ${newPassword}        infotiv2024
 
+#locator for renting car
+${startMonth}       //input[@id='start']
+${startDay}        //input[@id='start']
+${endMonth}        //input[@id='end']
+${endDay}        //input[@id='end']
+${continueButton}       //button[@id='continue']
+${whatWouldYouLikeToDrive}       //h1[@id='questionText']
+
+
+#variables for renting car
+${inputStartMonth}      03
+${inputStartDay}        13
+${inputEndMonth}        04
+${inputEndDay}          13
+
 
 *** Keywords ***
 setup
@@ -76,7 +89,7 @@ setup
 *** Test Cases ***
 check if website opens
     [Documentation]     check if website is open correctly by waiting to see infotiv car rental
-    [Tags]      verify website is correct
+    [Tags]       VG_test 
     
     Wait Until Element Is Visible    ${infotivCarRental}
 
@@ -87,13 +100,13 @@ check if website opens
     END
 
 
-click on creat customer profile
-    [Documentation]     click on create customer and make sure its on correct page
-    [Tags]      creating customer
+#click on creat customer profile
+    #[Documentation]     click on create customer and make sure its on correct page
+   # [Tags]      creating customer
 
-    Click Button    ${createUser}
+    #Click Button    ${createUser}
 
-    Wait Until Element Is Visible    ${createNewUser}
+    #Wait Until Element Is Visible    ${createNewUser}
 
 
 
@@ -116,12 +129,26 @@ login the customer
     [Documentation]     logging in
     [Tags]
 
+    #[Arguments]     ${input-E-mail}     ${inputPassword}
     Input Text      ${login-E-mail}       ${input-E-mail}
     Input Password     ${login-password}      ${inputPassword}
     Click Button    ${loginButton}
 
 
 
+rent car
+   [Documentation]     renting car
+   [Tags]
+
+   Input Text      ${startMonth}       ${inputStartMonth}
+   Input Text      ${startDay}        ${inputStartDay}
+
+   Input Text      ${EndMonth}       ${inputEndMonth}
+   Input Text      ${EndDay}        ${inputEndDay}
+   
+   Click Button    ${continueButton}
+   
+   Wait Until Element Is Visible    ${whatWouldYouLikeToDrive}
 
 
 
