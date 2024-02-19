@@ -1,13 +1,3 @@
-#Skapa ett testfall som testar navigations-flödet av att boka en bil.
-#Testet skall navigera från start-sida, logga in på ett redan existerande konto, boka en bil.
-#• Testsviten skall testa minst två olika sidor/funktioner
-#• Utgå från kravdokumentationen och koppla varje testfall till en dokumenterad sida/funktion.
-#Använd [Tags] och [Documentation] i Robot Framework samt namnge testfallen så att de
-#beskriver vad som testas.
-#• Åtminstone ett testfall bör skrivas i DDT-format.
-#• Minst två negativa testfal
-
-
 
 *** Settings ***
 
@@ -81,6 +71,8 @@ ${endMonth}        //input[@id='end']
 ${endDay}        //input[@id='end']
 ${continueButton}       //button[@id='continue']
 ${whatWouldYouLikeToDrive}       //h1[@id='questionText']
+${log-out}      //button[@id='logout']
+
 
 
 #variables for renting car
@@ -189,7 +181,7 @@ website opens successfuly to the right is the user information field to enter pa
 
 user enters correct password and email using existing credentials
     [Documentation]     logging in
-    [Tags]
+    [Tags]       VG_test
 
     #[Arguments]     ${input-E-mail}     ${inputPassword}
     Input Text      ${login-E-mail}       ${input-E-mail}
@@ -199,23 +191,58 @@ user clicks login button
     Click Button    ${loginButton}
 
 user is able to see a welcome message with the name of the user
-    Wait Until Page Contains        ${welcomePhrase}
+    #Wait Until Page Contains        ${welcomePhrase}
+    Wait Until Element Is Visible    ${welcomePhrase}
 
 
 
-rent car
-   [Documentation]     renting car
-   [Tags]
 
-   Input Text      ${startMonth}       ${inputStartMonth}
-   Input Text      ${startDay}        ${inputStartDay}
+log out button is visible
+  [Documentation]     to make sure that the user is logged in
+  [Tags]        VG_test
+  Wait Until Element Is Visible    ${log-out}
 
-   Input Text      ${EndMonth}       ${inputEndMonth}
-   Input Text      ${EndDay}        ${inputEndDay}
-   
-   Click Button    ${continueButton}
-   
+
+user clicks continue button on date selection page
+  [Documentation]     to click continue and use the defualt today date
+  [Tags]        VG_test
+  Click Button    ${continueButton}
+
+
+
+user is able to see what Would You Like To Drive quesion
+  [Documentation]     to verify that the date selection was successful
+  [Tags]        VG_test
    Wait Until Element Is Visible    ${whatWouldYouLikeToDrive}
+
+
+
+
+
+
+
+#date is set to today's date, to be checked late how to use it!
+  # [Documentation]     set date to today's date
+   #[Tags]       VG_test
+  # ${startDate}=        Get Time        dateFormat=%y-%m-%d
+  # Log      today date: ${startDate}
+  #Input Text      ${startMonth}        ${startDate}
+
+
+
+#rent car /to be used later! for -ve test cases!
+  # [Documentation]     renting car
+   #[Tags]        VG_test
+
+   #Input Text      ${startMonth}       ${inputStartMonth}
+   #Input Text      ${startDay}        ${inputStartDay}
+
+   #Input Text      ${EndMonth}       ${inputEndMonth}
+   #Input Text      ${EndDay}        ${inputEndDay}
+   
+   #Click Button    ${continueButton}
+   
+   #Wait Until Element Is Visible    ${whatWouldYouLikeToDrive}
 
 
 

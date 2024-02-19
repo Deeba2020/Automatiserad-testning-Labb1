@@ -13,3 +13,9 @@ login with existing credentials
     given user enters correct password and email using existing credentials
     when user clicks login button
     then user is able to see a welcome message with the name of the user
+
+
+select date to book car
+    given log out button is visible
+    when user clicks continue button on date selection page
+    then user is able to see what Would You Like To Drive quesion
