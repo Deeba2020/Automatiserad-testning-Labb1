@@ -19,3 +19,9 @@ select date to book car
     given log out button is visible
     when user clicks continue button on date selection page
     then user is able to see what Would You Like To Drive quesion
+
+
+select a car to book
+    given user is able to see back to date button on the page
+    when user clicks book button
+    then user is able to see confirm button

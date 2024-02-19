@@ -64,7 +64,7 @@ ${inputPhoneNumber}        004612335678
 ${new-E-mail}        deebarf@gmail.com
 ${newPassword}        infotiv2024
 
-#locator for renting car
+#locator for selecting date
 ${startMonth}       //input[@id='start']
 ${startDay}        //input[@id='start']
 ${endMonth}        //input[@id='end']
@@ -82,11 +82,19 @@ ${inputEndMonth}        04
 ${inputEndDay}          13
 
 
+#locator for selecting car
+${backToDate}       //button[@id='backToDateButton']
+${bookButton}       //tbody/tr[1]/td[5]/form[1]/input[4]
+${confirmButton}        //button[@id='confirm']
+
+
+
 *** Keywords ***
 setup
     Set Selenium Speed    1    #used to control the speed
     Open Browser    browser=Chrome
     Go To   ${url}
+    Maximize Browser Window
 
 
 *** Test Cases ***
@@ -216,11 +224,6 @@ user is able to see what Would You Like To Drive quesion
    Wait Until Element Is Visible    ${whatWouldYouLikeToDrive}
 
 
-
-
-
-
-
 #date is set to today's date, to be checked late how to use it!
   # [Documentation]     set date to today's date
    #[Tags]       VG_test
@@ -245,7 +248,22 @@ user is able to see what Would You Like To Drive quesion
    #Wait Until Element Is Visible    ${whatWouldYouLikeToDrive}
 
 
+user is able to see back to date button on the page
+   [Documentation]     to verify that the user is on car selection page
+   [Tags]        VG_test
+   Wait Until Element Is Visible    ${backToDate}
 
+
+user clicks book button
+   [Documentation]     user select a car by clicking book button
+   [Tags]        VG_test
+   Click Button    ${bookButton}
+
+
+user is able to see confirm button
+   [Documentation]     user is able to see confirm button after selectin the car
+   [Tags]        VG_test
+   Wait Until Element Is Visible    ${confirmButton}
 
 
 
