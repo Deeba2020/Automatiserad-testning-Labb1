@@ -186,14 +186,18 @@ website opens successfuly to the right is the user information field to enter pa
     #Wait Until Page Contains    ${whatWouldYouLikeToDrive} #this does not match when is done automatically and manually
 
 
-login the customer
+user enters correct password and email using existing credentials
     [Documentation]     logging in
     [Tags]
 
     #[Arguments]     ${input-E-mail}     ${inputPassword}
     Input Text      ${login-E-mail}       ${input-E-mail}
     Input Password     ${login-password}      ${inputPassword}
+
+user clicks login button
     Click Button    ${loginButton}
+
+#user is able to see a welcome message with the name of the user
 
 
 
