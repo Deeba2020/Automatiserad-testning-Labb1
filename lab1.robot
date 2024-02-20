@@ -88,6 +88,15 @@ ${bookButton}       //tbody/tr[1]/td[5]/form[1]/input[4]
 ${confirmButton}        //button[@id='confirm']
 
 
+#locator for confirm booking
+${confirmBooking}       //h1[@id='questionText']
+${cardNumber}       //input[@id='cardNum']
+${cardMonth}       //select[@title='Month']
+${cardYear}         //select[@title='Year']
+${cardCVC}        //input[@id='cvc']
+${cancelBooking}        //button[@id='cancel']
+
+
 
 *** Keywords ***
 setup

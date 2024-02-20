@@ -25,3 +25,11 @@ select a car to book
     given user is able to see back to date button on the page
     when user clicks book button
     then user is able to see confirm button
+
+to confirm booking
+    given user is able to see the confirm booking text
+    when user enters the card number
+    and the cvc code
+    and expiration date
+    and click on confirm button
+    then user is able to click confirm button
