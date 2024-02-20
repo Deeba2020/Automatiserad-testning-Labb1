@@ -35,4 +35,12 @@ to confirm booking
     and user enters the cvc code
     and user click on confirm button
     then user is able to see booking is successful a message with details of the registered booking
-    and user is able to see home button
+
+
+
+successful booking
+    given user is able to see home button
+    when user clicks on my page
+    and user is able to see license of the booked car
+    then user is able to see cancel booking button
+

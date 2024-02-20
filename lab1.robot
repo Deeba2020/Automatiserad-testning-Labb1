@@ -113,6 +113,12 @@ ${enterCardYear}         2018
 ${enterCardCVC}        123
 ${enterCardHolder}      Deba
 
+#locator for successful booking
+${licenseNoRow1}       //td[@id='licenseNumber1']
+${licenseNoRow2}        //td[@id='licenseNumber2']
+
+
+
 
 
 
@@ -353,19 +359,31 @@ user is able to see booking is successful a message with details of the register
     Wait Until Element Is Visible       ${successfulBooking}
 
 
+
+
 user is able to see home button
     [Documentation]     to verify booking is successful by seeing home button
     [Tags]        VG_test
     Wait Until Element Is Visible       ${homeButton}
 
 
-    
-    
 
 
-#user is able to see cancel booking button
-    #[Documentation]     to see cancel button to verify that booking is done successfuly
-    #[Tags]        VG_test
-   # Wait Until Element Is Visible    ${cancelCar}
+user clicks on my page
+    [Documentation]     to be able to go to my page
+    [Tags]        VG_test
+    Click Button       //div[@id='backToStart']//button[@id='mypage']
+
+
+user is able to see license of the booked car
+    [Documentation]     to verify booking is successful by seeing license of the car row wise (1st row)
+    [Tags]        VG_test
+    Wait Until Element Is Visible       ${licenseNoRow1}
+
+    
+user is able to see cancel booking button
+    [Documentation]     to see cancel button to verify that booking is done successfuly
+    [Tags]        VG_test
+    Wait Until Element Is Visible    ${cancelCar}
 
 
