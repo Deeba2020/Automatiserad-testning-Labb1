@@ -29,7 +29,10 @@ select a car to book
 to confirm booking
     given user is able to see the confirm booking text
     when user enters the card number
-    and the cvc code
-    and expiration date
-    and click on confirm button
-    then user is able to click confirm button
+    and user enters the name for the card
+    and user enters the month for the card
+    and user enters the year for the card
+    and user enters the cvc code
+    and user click on confirm button
+    then user is able to see booking is successful a message with details of the registered booking
+    and user is able to see home button

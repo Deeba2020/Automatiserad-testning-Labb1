@@ -84,17 +84,35 @@ ${inputEndDay}          13
 
 #locator for selecting car
 ${backToDate}       //button[@id='backToDateButton']
-${bookButton}       //tbody/tr[1]/td[5]/form[1]/input[4]
+${bookButton}       //tbody/tr[1]/td[5]/form[1]/input[4]  #to book car from first row
+${bookButtonThird}      //tbody/tr[3]/td[5]/form[1]/input[4]   #to book car from third row
 ${confirmButton}        //button[@id='confirm']
+${make}      //div[@id='ms-list-1']//button[@type='button']
+${passengers}         //span[normalize-space()='Passengers']
+${scroll}        //html
 
 
 #locator for confirm booking
-${confirmBooking}       //h1[@id='questionText']
+${confirmBookingTxt}       //h1[@id='questionText']
 ${cardNumber}       //input[@id='cardNum']
 ${cardMonth}       //select[@title='Month']
 ${cardYear}         //select[@title='Year']
 ${cardCVC}        //input[@id='cvc']
 ${cancelBooking}        //button[@id='cancel']
+${cardHolder}        //input[@id='fullName']
+${cancelCar}       //button[@id='unBook1']
+${successfulBooking}        //h1[@id='questionTextSmall']
+${homeButton}       //button[@id='home']
+${mypageButton}       //div[@id='backToStart']//button[@id='mypage']
+
+
+#variables to confirm booking
+${enterCardNumber}      1234567812345678
+${enterCardMonth}       3
+${enterCardYear}         2018
+${enterCardCVC}        123
+${enterCardHolder}      Deba
+
 
 
 
@@ -263,10 +281,20 @@ user is able to see back to date button on the page
    Wait Until Element Is Visible    ${backToDate}
 
 
+#user clicks book button  to be used later!
+  # [Documentation]     user select a car by clicking book button
+   #[Tags]        VG_test
+   #Click Button    ${bookButton}
+   #Select From List By Label    ${passengers}       9
+
+
+
 user clicks book button
    [Documentation]     user select a car by clicking book button
    [Tags]        VG_test
    Click Button    ${bookButton}
+
+   
 
 
 user is able to see confirm button
@@ -274,5 +302,70 @@ user is able to see confirm button
    [Tags]        VG_test
    Wait Until Element Is Visible    ${confirmButton}
 
+
+
+user is able to see the confirm booking text
+    [Documentation]     user is able to see confirm booking text with selected car model
+    [Tags]        VG_test
+    Wait Until Element Is Visible    ${confirmBookingTxt}
+
+
+user enters the card number
+    [Documentation]     to enter card number for payment purpose
+    [Tags]        VG_test
+    Input Text    ${cardNumber}    ${enterCardNumber}
+    
+
+user enters the name for the card 
+    [Documentation]     to enter name for the card  for payment purpose
+    [Tags]        VG_test
+    Input Text    ${cardHolder}    ${enterCardHolder}
+    
+
+
+user enters the month for the card
+    [Documentation]     to enter month for the card  for payment purpose
+    [Tags]        VG_test
+    Select From List By Label    ${cardMonth}       ${enterCardMonth}
+    
+user enters the year for the card
+    [Documentation]     to enter year for the card  for payment purpose
+    [Tags]        VG_test
+    Select From List By Label    ${cardYear}       ${enterCardYear}
+    
+    
+user enters the cvc code
+    [Documentation]     to enter CVC for the card  for payment purpose
+    [Tags]        VG_test
+    Input Text    ${cardCVC}    ${enterCardCVC}
+
+
+
+user click on confirm button
+    [Documentation]     to click confirm button  for payment purpose
+    [Tags]        VG_test
+    Click Button    ${confirmButton}
+
+
+user is able to see booking is successful a message with details of the registered booking
+    [Documentation]     to verify booking is successful by seeing "car model is now ready for pickup date"
+    [Tags]        VG_test
+    Wait Until Element Is Visible       ${successfulBooking}
+
+
+user is able to see home button
+    [Documentation]     to verify booking is successful by seeing home button
+    [Tags]        VG_test
+    Wait Until Element Is Visible       ${homeButton}
+
+
+    
+    
+
+
+#user is able to see cancel booking button
+    #[Documentation]     to see cancel button to verify that booking is done successfuly
+    #[Tags]        VG_test
+   # Wait Until Element Is Visible    ${cancelCar}
 
 
