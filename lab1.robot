@@ -11,8 +11,12 @@ Resource        resources.robot
 
 *** Test Cases ***
 
+
+
+
+
 open website and verify its correct website
-    given setup
+   # given setup
     when check if website opens correctly by waiting to see infotivCarRental
     and check if website opens correctly by waiting to see "When do you want to make your trip?"
     then check if website is open correctly by waiting to see field to enter email
