@@ -57,12 +57,12 @@ ${whatWouldYouLikeToDrive}     //h1[@id='questionText']
 
 
 #follwing are customer details when we want to create new customer
-${inputName}        Deba
-${inputLastName}        Arif
+${inputName}        Deba0
+${inputLastName}        Arif0
 ${createUser}       //button[@id='createUser']
-${inputPhoneNumber}        004612335678
-${new-E-mail}        deebarf@gmail.com
-${newPassword}        infotiv2024
+${inputPhoneNumber}        004614035178
+${new-E-mail}        deebarf402@gmail.com
+${newPassword}        infotiv0314
 
 
 #locator for selecting date
@@ -88,8 +88,12 @@ ${bookButton}       //tbody/tr[1]/td[5]/form[1]/input[4]  #to book car from firs
 ${bookButtonThird}      //tbody/tr[3]/td[5]/form[1]/input[4]   #to book car from third row
 ${confirmButton}        //button[@id='confirm']
 ${make}      //div[@id='ms-list-1']//button[@type='button']
-${passengers}         //span[normalize-space()='Passengers']
-${scroll}        //html
+${passengersButton}         //div[@id='ms-list-2']//button[@type='button']
+${vivaro}       //td[normalize-space()='Vivaro']
+
+
+#variables for selecting car
+${passengerNum}     //input[@id='ms-opt-9']
 
 
 #locator for confirm booking
@@ -117,6 +121,12 @@ ${enterCardHolder}      Deba
 #locator for successful booking
 ${licenseNoRow1}       //td[@id='licenseNumber1']
 ${licenseNoRow2}        //td[@id='licenseNumber2']
+
+
+#locator for successful booking
+${about-button}         //a[@id='about']
+${documentation}        //div[@id='mainWrapperBody']//a[1]
+
 
 
 *** Keywords ***
@@ -198,21 +208,51 @@ user can verify that the car is booked by clicking on my page
     Close Browser
 
 
-
-verify create user button is visible and click on it to create account
+user clicks on it to create user button
     [Documentation]     click on create user and create new account
     [Tags]      VG_test
+    [Arguments]     ${inputNameArg}        ${inputLastNameArg}        ${inputPhoneNumberArg}     ${new-E-mailArg}       ${new-E-mailArg}       ${newPasswordArg}      ${newPasswordArg}
     Wait Until Element Is Visible    ${createUser}
     Click Button    ${createUser}
-    Input Text      ${firstName}      ${inputName}
-    Input Text      ${lastName}       ${inputLastName}
-    Input Text      ${phoneNumber}       ${inputPhoneNumber}
-    Input Text      ${E-mail}       ${new-E-mail}
-    Input Text      ${confirm-E-mail}       ${new-E-mail}
-    Input Password     ${password}      ${newPassword}
-    Input Password     ${confirmPassword}      ${newPassword}
+    Input Text      ${firstName}      ${inputNameArg}
+    Input Text      ${lastName}       ${inputLastNameArg}
+    Input Text      ${phoneNumber}       ${inputPhoneNumberArg}
+    Input Text      ${E-mail}       ${new-E-mailArg}
+    Input Text      ${confirm-E-mail}       ${new-E-mailArg}
+    Input Password     ${password}      ${newPasswordArg}
+    Input Password     ${confirmPassword}      ${newPasswordArg}
     Click Button    ${createButton}
-    Wait Until Page Contains    ${whatWouldYouLikeToDrive} #this does not match when is done automatically and manually
+
+
+user filter car according to number of passenger
+    [Documentation]     to filter car according to number of passenger
+    [Tags]      VG_test
+    [Arguments]    ${passengerNumArg}
+    Click Button    ${continueButton}
+    Wait Until Element Is Visible    ${passengersButton}
+    Click Element    ${passengersButton}
+    Click Element    ${passengerNumArg}
+    Wait Until Element Is Visible    ${vivaro}
+
+
+user can click on back to date button
+    [Documentation]     click on back to date button
+    [Tags]      VG_test
+
+    Wait Until Element Is Visible    ${backToDate}
+    Click Button    ${backToDate}
+    Wait Until Element Is Visible    ${dateQuesion}
+
+
+user can click on about button and about page will be visible
+    [Documentation]     click on about button
+    [Tags]      VG_test
+    Click Button       ${mypageButton}
+    Wait Until Element Is Visible    ${about-button}
+    Click Element    ${about-button}
+    Wait Until Element Is Visible    ${documentation}
+
+
 
 
 
