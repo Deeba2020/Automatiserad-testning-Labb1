@@ -26,10 +26,10 @@ to book a car and verify that it is booked
 
 
 #extra functions
-to fill customer details and create new account
-    given website opens correctly and make sure user is not logged in
-    when user clicks on it to create user button        ${inputName}        ${inputLastName}        ${inputPhoneNumber}     ${new-E-mail}       ${new-E-mail}       ${newPassword}      ${newPassword}
-    then user can click log out button after signing in
+#to fill customer details and create new account
+    #given website opens correctly and make sure user is not logged in
+    #when user clicks on it to create user button        ${inputName}        ${inputLastName}        ${inputPhoneNumber}     ${new-E-mail}       ${new-E-mail}       ${newPassword}      ${newPassword}
+    #then user can click log out button after signing in
 
 
 to filter a car and verify that it is filtered
