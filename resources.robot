@@ -293,6 +293,14 @@ user can not continue to the next page
 
 
 
+date is set to today's date, to be checked later how to use it!
+  [Documentation]     set date to today's date
+  [Tags]       VG_test
+  ${startDate}=        Get Time        dateFormat=%y-%m-%d
+  Log      today date: ${startDate}
+  Input Text      ${startMonth}        ${startDate}
+
+
 
 #website opens correctly by waiting to see "When do you want to make your trip?"
 
@@ -349,12 +357,6 @@ user can not continue to the next page
   # Wait Until Element Is Visible    ${whatWouldYouLikeToDrive}
 
 
-#date is set to today's date, to be checked later how to use it!
-  # [Documentation]     set date to today's date
-   #[Tags]       VG_test
-  # ${startDate}=        Get Time        dateFormat=%y-%m-%d
-  # Log      today date: ${startDate}
-  #Input Text      ${startMonth}        ${startDate}
 
 
 #rent car /to be used later! for -ve test cases!
