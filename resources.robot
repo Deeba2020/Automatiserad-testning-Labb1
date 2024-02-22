@@ -71,14 +71,14 @@ ${startDay}        //input[@id='start']
 ${endMonth}        //input[@id='end']
 ${endDay}        //input[@id='end']
 ${continueButton}       //button[@id='continue']
-${whatWouldYouLikeToDrive}       //h1[@id='questionText']
+#${whatWouldYouLikeToDrive}       //h1[@id='questionText']
 ${log-out}      //button[@id='logout']
 
 
 #variables for renting car
-${inputStartMonth}      03
+${inputStartMonth}      02
 ${inputStartDay}        13
-${inputEndMonth}        04
+${inputEndMonth}        03
 ${inputEndDay}          13
 
 
@@ -87,9 +87,11 @@ ${backToDate}       //button[@id='backToDateButton']
 ${bookButton}       //tbody/tr[1]/td[5]/form[1]/input[4]  #to book car from first row
 ${bookButtonThird}      //tbody/tr[3]/td[5]/form[1]/input[4]   #to book car from third row
 ${confirmButton}        //button[@id='confirm']
-${make}      //div[@id='ms-list-1']//button[@type='button']
+${makeButton}      //div[@id='ms-list-1']//button[@type='button']
 ${passengersButton}         //div[@id='ms-list-2']//button[@type='button']
 ${vivaro}       //td[normalize-space()='Vivaro']
+${Audi}     //input[@id='ms-opt-1']
+${filterInstruction}        //label[contains(text(),'No cars with selected filters. Please edit filter ')]
 
 
 #variables for selecting car
@@ -207,7 +209,7 @@ user can verify that the car is booked by clicking on my page
     Wait Until Element Is Visible    ${cancelCar}
     Close Browser
 
-
+#extra test cases
 user clicks on it to create user button
     [Documentation]     click on create user and create new account
     [Tags]      VG_test
@@ -252,6 +254,42 @@ user can click on about button and about page will be visible
     Click Element    ${about-button}
     Wait Until Element Is Visible    ${documentation}
 
+
+#negative test cases
+user both filter on car selection page and the filtered car is not available
+    [Documentation]     to test the case when filtered car is not available
+    [Tags]      VG_test
+    [Arguments]    ${passengerNumArg}       ${selectedCarArg}
+    Click Button    ${continueButton}
+    Wait Until Element Is Visible    ${passengersButton}
+    Click Element    ${passengersButton}
+    Click Element    ${passengerNumArg}
+    Click Element    ${makeButton}
+    Click Element    ${selectedCarArg}
+
+
+user gets instruction to choose different car since the filtered car is not available
+    [Documentation]     to test the case when filtered car is not available user gets informed
+    [Tags]      VG_test
+    Wait Until Element Is Visible   ${filterInstruction}
+
+
+
+select a date which is earlier than today date
+  [Documentation]     renting car
+  [Tags]        VG_test
+
+  Input Text      ${startMonth}       ${inputStartMonth}
+  Input Text      ${startDay}        ${inputStartDay}
+
+  Input Text      ${EndMonth}       ${inputEndMonth}
+  Input Text      ${EndDay}        ${inputEndDay}
+
+  Click Button    ${continueButton}
+
+
+user can not continue to the next page
+  Wait Until Page Does Not Contain    ${whatWouldYouLikeToDrive}
 
 
 

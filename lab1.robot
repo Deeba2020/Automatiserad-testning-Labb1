@@ -26,10 +26,10 @@ to book a car and verify that it is booked
 
 
 #extra functions
-to fill customer details and create new account
-    given website opens correctly and make sure user is not logged in
-    when user clicks on it to create user button        ${inputName}        ${inputLastName}        ${inputPhoneNumber}     ${new-E-mail}       ${new-E-mail}       ${newPassword}      ${newPassword}
-    then user can click log out button after signing in
+#to fill customer details and create new account
+    #given website opens correctly and make sure user is not logged in
+    #when user clicks on it to create user button        ${inputName}        ${inputLastName}        ${inputPhoneNumber}     ${new-E-mail}       ${new-E-mail}       ${newPassword}      ${newPassword}
+    #then user can click log out button after signing in
 
 
 to filter a car and verify that it is filtered
@@ -44,4 +44,22 @@ to test user can go to about page from my page
     and user enters correct password and email to log in using existing credentials     ${primaryEmail}      ${primaryPassword}
     when user can click on about button and about page will be visible
     then user can click log out button after signing in
+
+
+#negative test cases
+to test when user filter a car which is not available user gets informed that the filtered car is not available
+    given website opens correctly and make sure user is not logged in
+    and user enters correct password and email to log in using existing credentials     ${primaryEmail}      ${primaryPassword}
+    when user both filter on car selection page and the filtered car is not available       ${passengerNum}     ${Audi}
+    then user gets instruction to choose different car since the filtered car is not available
+
+
+
+to select a date earlier than today date and user sure get informed to choose another date not earlier than today date
+    given website opens correctly and make sure user is not logged in
+    and user enters correct password and email to log in using existing credentials     ${primaryEmail}      ${primaryPassword}
+    when select a date which is earlier than today date
+    then user can not continue to the next page
+
+
 
