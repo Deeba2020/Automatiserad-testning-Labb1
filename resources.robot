@@ -5,16 +5,10 @@ Documentation    lab-1
 Library    SeleniumLibrary
 Library    Collections
 Library     XML
-#Suite Setup     setup
+
 
 
 *** Variables ***
-
-#${}        //input[@id='phone']
-#@{}=    Create List
-#@{}=    Create List
-#@{}=    Create List
-
 #open website locators
 ${url}      https://rental13.infotiv.net/
 ${infotivCarRental}   //h1[@id='title']
@@ -60,9 +54,9 @@ ${whatWouldYouLikeToDrive}     //h1[@id='questionText']
 ${inputName}        Deba0
 ${inputLastName}        Arif0
 ${createUser}       //button[@id='createUser']
-${inputPhoneNumber}        004614035178
-${new-E-mail}        deebarf402@gmail.com
-${newPassword}        infotiv0314
+${inputPhoneNumber}        004614225178
+${new-E-mail}        deebarf203@gmail.com
+${newPassword}        infotiv9314
 
 
 #locator for selecting date
@@ -290,6 +284,7 @@ select a date which is earlier than today date
 
 user can not continue to the next page
   Wait Until Page Does Not Contain    ${whatWouldYouLikeToDrive}
+
 
 
 

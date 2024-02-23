@@ -4,13 +4,13 @@
 Documentation    lab-1
 Library    SeleniumLibrary
 Library    Collections
-Library     XML
 Resource        resources.robot
+Library     XML
 
 
 *** Test Cases ***
 
-login with existing credentials
+login with existing credentials successfuly
     given website opens correctly and make sure user is not logged in
     when user enters correct password and email to log in using existing credentials       ${primaryEmail}      ${primaryPassword}
     and user can click on my page to see booking history
