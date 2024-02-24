@@ -26,10 +26,10 @@ to book a car and verify that it is booked
 
 
 #extra functions
-to fill customer details and create new account
-    given website opens correctly and make sure user is not logged in
-    when user clicks on it to create user button        ${inputName}        ${inputLastName}        ${inputPhoneNumber}     ${new-E-mail}       ${new-E-mail}       ${newPassword}      ${newPassword}
-    then user can click log out button after signing in
+#to fill customer details and create new account
+    #given website opens correctly and make sure user is not logged in
+    #when user clicks on it to create user button        ${inputName}        ${inputLastName}        ${inputPhoneNumber}     ${new-E-mail}       ${new-E-mail}       ${newPassword}      ${newPassword}
+    #then user can click log out button after signing in
 
 
 to filter a car and verify that it is filtered
@@ -47,7 +47,7 @@ to test user can go to about page from my page
 
 
 #negative test cases
-to test when user filter a car which is not available user gets informed that the filtered car is not available
+to test user gets informed when filtering a car which is not available
     given website opens correctly and make sure user is not logged in
     and user enters correct password and email to log in using existing credentials     ${primaryEmail}      ${primaryPassword}
     when user both filter on car selection page and the filtered car is not available       ${passengerNum}     ${Audi}
@@ -55,7 +55,7 @@ to test when user filter a car which is not available user gets informed that th
 
 
 
-to select a date earlier than today date and user can not continue to next page to book car
+user fails to continue to next page when entering date earlier than today
     given website opens correctly and make sure user is not logged in
     and user enters correct password and email to log in using existing credentials     ${primaryEmail}      ${primaryPassword}
     when select a date which is earlier than today date

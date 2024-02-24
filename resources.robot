@@ -130,7 +130,7 @@ ${documentation}        //div[@id='mainWrapperBody']//a[1]
 website opens correctly and make sure user is not logged in
     [Documentation]     check if website is open correctly
     [Tags]        VG_test
-    Set Selenium Speed    1    #used to control the speed
+    #Set Selenium Speed    1    #used to control the speed
     Open Browser    browser=Chrome
     Go To   ${url}
     Maximize Browser Window
@@ -238,6 +238,8 @@ user can click on back to date button
     Wait Until Element Is Visible    ${backToDate}
     Click Button    ${backToDate}
     Wait Until Element Is Visible    ${dateQuesion}
+    Close Browser
+    ##
 
 
 user can click on about button and about page will be visible
@@ -266,24 +268,23 @@ user gets instruction to choose different car since the filtered car is not avai
     [Documentation]     to test the case when filtered car is not available user gets informed
     [Tags]      VG_test
     Wait Until Element Is Visible   ${filterInstruction}
+    Close Browser
 
 
 
 select a date which is earlier than today date
   [Documentation]     renting car
   [Tags]        VG_test
-
   Input Text      ${startMonth}       ${inputStartMonth}
   Input Text      ${startDay}        ${inputStartDay}
-
   Input Text      ${EndMonth}       ${inputEndMonth}
   Input Text      ${EndDay}        ${inputEndDay}
-
   Click Button    ${continueButton}
 
 
 user can not continue to the next page
   Wait Until Page Does Not Contain    ${whatWouldYouLikeToDrive}
+  Close Browser
 
 
 
@@ -294,6 +295,15 @@ date is set to today's date, to be checked later how to use it!
   ${startDate}=        Get Time        dateFormat=%y-%m-%d
   Log      today date: ${startDate}
   Input Text      ${startMonth}        ${startDate}
+
+
+  #clean up
+  #no variable for one time used locator
+  #clean up code
+  #no space between code
+  #wait until page containe use it from time to time
+  #click element does it work for text
+  #no Lod for password, email , date
 
 
 
