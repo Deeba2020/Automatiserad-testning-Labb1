@@ -1,6 +1,5 @@
 
 *** Settings ***
-
 Documentation    lab-1
 Library    SeleniumLibrary
 Library    Collections
