@@ -5,6 +5,8 @@ Documentation    lab-1
 Library    SeleniumLibrary
 Library    Collections
 Library     XML
+Library    Process
+Library    BuiltIn
 
 
 
@@ -130,7 +132,7 @@ ${documentation}        //div[@id='mainWrapperBody']//a[1]
 website opens correctly and make sure user is not logged in
     [Documentation]     check if website is open correctly
     [Tags]        VG_test
-    #Set Selenium Speed    1    #used to control the speed
+    Set Selenium Speed    1    #used to control the speed
     Open Browser    browser=Chrome
     Go To   ${url}
     Maximize Browser Window
@@ -287,127 +289,32 @@ user can not continue to the next page
   Close Browser
 
 
+Using today's date automatically,First way
+    [Documentation]     set date to today's date automatically
+    [Tags]       VG_test
+    ${todayDate}=    Get Time    dateFormat=%y-%m-%d
+    ${year}=    Set Variable    ${todayDate[0:4]}
+    ${month}=    Set Variable    ${todayDate[5:7]}
+    ${day}=    Set Variable    ${todayDate[8:10]}
+    Input Text    //input[@id='start']    ${month}
+    Input Text      //input[@id='start']        ${day}
+    Click Button    ${continueButton}
 
 
-date is set to today's date, to be checked later how to use it!
-  [Documentation]     set date to today's date
-  [Tags]       VG_test
-  ${startDate}=        Get Time        dateFormat=%y-%m-%d
-  Log      today date: ${startDate}
-  Input Text      ${startMonth}        ${startDate}
-
-
-  #clean up
-  #no variable for one time used locator
-  #clean up code
-  #no space between code
-  #wait until page containe use it from time to time
-  #click element does it work for text
-  #no Lod for password, email , date
-
-
-
-#website opens correctly by waiting to see "When do you want to make your trip?"
-
-    #[Documentation]     check if website is open correctly by waiting to see trip date quesion
-  #  [Tags]        VG_test
-
-    #Wait Until Element Is Visible    ${dateQuesion}
-    #${visibleDateQuesion}=       Run Keyword And Return Status      Wait Until Element Is Visible    ${dateQuesion}
-    #Log To Console    ${visibleDateQuesion}
-
-    #IF    '$visibleDateQuesion == True'
-      #  Log    website status: website opened successfuly quesion to enter date trip is seen
-    #ELSE
-     #   Log    List eqaulity status: website could not be opened  quesion to enter date trip is not seen
-   #END
-
-
-
-#check that user is not logged in by waiting to see field to enter email
-    #[Documentation]     double check use is not logged in by waiting to see field to enter email
-    #[Tags]        VG_test
-
-    #Wait Until Element Is Visible    ${login-E-mail}
-    #${visibleEmailField}=       Run Keyword And Return Status      Wait Until Element Is Visible    ${login-E-mail}
-    #Log To Console    ${visibleEmailField}
-
-    #IF    '$visibleEmailField == True'
-        #Log    website status: website opened successfuly feild to login email is visible
-    #ELSE
-        #Log    List eqaulity status: website could not be opened feild to login email is not visible
-   # END
-
-
-#check if website opens correctly by waiting to see field to enter password
-
-    #[Documentation]     check if website is open correctly by waiting to see field to enter password
-    #[Tags]        VG_test
-
-    #Wait Until Element Is Visible    ${login-password}
-    #${visiblePasswdField}=       Run Keyword And Return Status      Wait Until Element Is Visible     ${login-password}
-    #Log To Console    ${visiblePasswdField}
-
-    #IF    '$visiblePasswdField == True'
-        #Log    website status: website opened successfuly feild to enter password is visible
-    #ELSE
-        #Log    List eqaulity status: website could not be opened feild to enter password is not visible
-    #END
-
-
-
-#user is able to see what Would You Like To Drive quesion
-  #[Documentation]     to verify that the date selection was successful
-  #[Tags]        VG_test
-  # Wait Until Element Is Visible    ${whatWouldYouLikeToDrive}
+Using today's date automatically,Second way
+    [Documentation]     set date to today's date automatically
+    [Tags]       VG_test
+    ${todayDate}=    Get Time    dateFormat=%y-%m-%d
+    ${year}=    Evaluate    "${todayDate}"[0:4]
+    ${month}=    Evaluate    "${todayDate}"[5:7]
+    ${day}=    Evaluate    "${todayDate}"[8:]
+    Input Text    //input[@id='start']    ${month}
+    Input Text      //input[@id='start']        ${day}
+    Click Button    ${continueButton}
 
 
 
 
-#rent car /to be used later! for -ve test cases!
-  # [Documentation]     renting car
-   #[Tags]        VG_test
-
-   #Input Text      ${startMonth}       ${inputStartMonth}
-   #Input Text      ${startDay}        ${inputStartDay}
-
-   #Input Text      ${EndMonth}       ${inputEndMonth}
-   #Input Text      ${EndDay}        ${inputEndDay}
-
-   #Click Button    ${continueButton}
-
-   #Wait Until Element Is Visible    ${whatWouldYouLikeToDrive}
-
-
-#user is able to see back to date button on the page /not used
-  # [Documentation]     to verify that the user is on car selection page
-   #[Tags]        VG_test
-   #Wait Until Element Is Visible    ${backToDate}
-
-
-#user clicks book button  to be used later!
-  # [Documentation]     user select a car by clicking book button
-   #[Tags]        VG_test
-   #Click Button    ${bookButton}
-   #Select From List By Label    ${passengers}       9
-
-
-#user clicks book button
-   #[Documentation]     user select a car by clicking book button
-   #[Tags]        VG_test
-   #Click Button    ${bookButton}
-
-
-#user is able to see confirm button
-   #[Documentation]     user is able to see confirm button after selectin the car
-   #[Tags]        VG_test
-   #Wait Until Element Is Visible    ${confirmButton}
-
-
-#user is able to see the confirm booking text
-    #[Documentation]     user is able to see confirm booking text with selected car model
-   # [Tags]        VG_test
-   # Wait Until Element Is Visible    ${confirmBookingTxt}
 
 
 

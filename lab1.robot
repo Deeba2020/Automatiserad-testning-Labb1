@@ -5,6 +5,7 @@ Library    SeleniumLibrary
 Library    Collections
 Resource        resources.robot
 Library     XML
+Library    BuiltIn
 
 
 *** Test Cases ***
@@ -60,5 +61,8 @@ user fails to continue to next page when entering date earlier than today
     when select a date which is earlier than today date
     then user can not continue to the next page
 
-
+date
+    given website opens correctly and make sure user is not logged in
+    when user enters correct password and email to log in using existing credentials     ${primaryEmail}      ${primaryPassword}
+    then Using today's date automatically,Second way
 
