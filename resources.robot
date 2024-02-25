@@ -52,9 +52,9 @@ user enters correct password and email to log in using existing credentials
     Wait Until Page Contains    You are signed in as Deba
     ${account}=       Run Keyword And Return Status      Wait Until Page Contains    You are signed in as Sara
     IF    '${account}' == 'True'
-        Log    login status: You are signed in as Sara
+        Log    login status: You are signed-in by secondary account
     ELSE
-        Log    login status: You are signed in as Deba
+        Log    login status: You are signed-in by primary account
     END
 
 
