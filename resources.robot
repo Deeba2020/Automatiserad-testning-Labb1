@@ -72,7 +72,7 @@ user can click log out button after signing in
     Close Browser
 
 
-user books a car
+user books a car and see booking confirmation text
   [Documentation]     to click continue and use the defualt today date
   [Tags]        VG_test
   [Arguments]       ${cardNumberArg}       ${cardHolderArg}       ${cardMonthArg}        ${cardYearArg}     ${cardCVCArg}
@@ -89,6 +89,7 @@ user books a car
   Input Text    //input[@id='cvc']    ${cardCVCArg}
   Click Button    ${confirmButton}
   Wait Until Page Contains    is now ready for pickup
+  Wait Until Page Contains    You can view your booking on your page
   Wait Until Element Is Visible       //h1[@id='questionTextSmall']
   Wait Until Element Is Visible       //button[@id='home']
 
@@ -173,3 +174,23 @@ user can not continue to the next page
   [Tags]        VG_test
   Wait Until Page Does Not Contain    What would you like to drive?
   Close Browser
+
+
+using today's date automatically
+    [Documentation]     set date to today's date automatically
+    [Tags]       VG_test
+    ${todayDate}=    Get Time    dateFormat=%y-%m-%d
+    ${year}=    Evaluate    "${todayDate}"[0:4]
+    ${month}=    Evaluate    "${todayDate}"[5:7]
+    ${day}=    Evaluate    "${todayDate}"[8:]
+    Input Text    //input[@id='start']    ${month}
+    Input Text      //input[@id='start']        ${day}
+    Click Button    ${continueButton}
+
+
+user can go to the booking car page and select a car
+    [Documentation]     to go to book car page and select a car
+    [Tags]       VG_test
+    Wait Until Page Contains    Selected trip dates:
+    Click Button    //tbody/tr[1]/td[5]/form[1]/input[4]
+    Close Browser
