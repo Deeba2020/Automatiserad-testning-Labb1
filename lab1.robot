@@ -16,7 +16,7 @@ login with existing credentials successfuly
 to book a car and verify that it is booked
     given website opens correctly and make sure user is not logged in
     and user enters correct password and email to log in using existing credentials     ${primaryEmail}      ${primaryPassword}
-    when user books a car       ${cardNumber}      ${cardHolder}      ${cardMonth}       ${cardYear}        ${cardCVC}
+    when user books a car and see booking confirmation text       ${cardNumber}      ${cardHolder}      ${cardMonth}       ${cardYear}        ${cardCVC}
     then user can verify that the car is booked by clicking on my page
 
 
@@ -48,4 +48,9 @@ user fails to continue to next page when entering a date earlier than today date
     then user can not continue to the next page
 
 
+use today's date automatically to book car without user interaction
+    given website opens correctly and make sure user is not logged in
+    and user enters correct password and email to log in using existing credentials     ${primaryEmail}      ${primaryPassword}
+    when using today's date automatically
+    then user can go to the booking car page and select a car
 
